@@ -5,7 +5,7 @@ def KMP(T, P):  #T for text, P for pattern
 
     #initialize local variables
 
-    matches = 0                  #count number of matches found
+    matches = 0                     #count number of matches found
     n = len(T)                      #length of text
     m = len(P)                      #length of pattern
     PMT = PrefixFunc(P)             #partial matches table    
@@ -23,15 +23,14 @@ def KMP(T, P):  #T for text, P for pattern
     print ("Length Text: " + str(n)+"\n")   
  
     #begin searching string for matches    
-  
-    for i in range(n-1):                    #scan text from left to right
-        while q > 0 and P[q] != T[i+1]:     #while next char does not match
+    for i in range(n):                      #scan text from left to right
+        while q > 0 and P[q] != T[i]:       #while next char does not match
             q = PMT[q]                      #use table to "jump" # char matches
-        if P[q] == T[i+1]:                  #when next character does match
+        if P[q] == T[i]:                    #when next character does match
             q = q + 1                       #increment # of char matches by 1
         if q == m:                          #if all characters in pattern found
             matches = matches + 1  #update number of matches
-            #output location of match and number of char shifts needed to find            
+            #output location of match and number of char shifts needed to find
             print ("Pattern starts at the " + str(i+3-m) \
                 + " position. Shift = " + str(i + 1 - m) )  
             q = PMT[q-1]                    #look for next match
