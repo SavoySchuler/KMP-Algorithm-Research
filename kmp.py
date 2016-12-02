@@ -1,8 +1,11 @@
-def KMP(T, P):
+import sys
+from kmpUnitTests import *
+
+def KMP(T, P):  #T for text, P for pattern
 
     #initialize local variables
 
-    matchFound = 0                  #count number of matches found
+    matches = 0                  #count number of matches found
     n = len(T)                      #length of text
     m = len(P)                      #length of pattern
     PMT = PrefixFunc(P)             #partial matches table    
@@ -10,7 +13,7 @@ def KMP(T, P):
 
     #display prefix table for user
 
-    print ("\n\nPrefix table: ")
+    print ("\nPrefix table: ")
     for i in range(len(PMT)):
         print (PMT[i])  
 
@@ -27,27 +30,28 @@ def KMP(T, P):
         if P[q] == T[i+1]:                  #when next character does match
             q = q + 1                       #increment # of char matches by 1
         if q == m:                          #if all characters in pattern found
-            matchFound = matches found + 1  #update number of matches
+            matches = matches + 1  #update number of matches
             #output location of match and number of char shifts needed to find            
-            print ("Pattern occurs at the " + str(i+2-m) \
+            print ("Pattern starts at the " + str(i+3-m) \
                 + " position. Shift = " + str(i + 1 - m) )  
             q = PMT[q-1]                    #look for next match
     
     #conclude search
     #finish function with conditional output
 
-    if matchFound == 0:             #if no matches found...
-        print ("\nNo match!\n")     #inform userno matches were found
-    else:                           #if matches were found...
-        print ("\n")                #print separator for formatting 
+    if matches == 0:             #if no matches found, inform user
+        print ("\nNo match!\n")     
+    else:                           #if matches were found, print total number
+        print ("\nTotal number of matches found: " + str(matches) + "\n")
+    return matches 
 
 
 
-def PrefixFunc(Pattern): 
+def PrefixFunc(P):  #P for pattrn
 
     #initialize local variables
 
-    m = len(Pattern)    #store length of patterm
+    m = len(P)    #store length of patterm
     PMT = []            #table for prefix = suffix lengths in pattern 
                         #used for partial match "jumps" in full string search
     k = 0               #number of characters in pattern matched
@@ -74,4 +78,24 @@ def PrefixFunc(Pattern):
 
     return PMT      
 
-KMP("ACTGACGTACGTACGTACGTACGTACTG", "ACGTACGT")
+
+
+# this pattern allows us to mimic a main function
+if __name__ == '__main__':
+    if len(sys.argv) == 3:      #if full command line parameters entered
+        Text = sys.argv[1]      #set text
+        Pattern = sys.argv[2]   #set pattern
+        KMP (Text, Pattern)     #call KMP search
+    
+    elif len(sys.argv) == 2:    #if flag set, check if for test, default to help
+        if sys.argv[1] == 'test' or sys.argv[1] == '-t':    #if flag for testing
+            tests()             #call function to run prewritten unit tests
+        else:                   #any other, default to help for usage
+            print("\nUsages:")  #list usage call types
+            print("Run:  python3 kmp.py <text> <pattern>")
+            print("Test: python3 kmp.py {-t} or {test} >> testResults.txt")
+            print("Help: python3 kmp.py {-h} or {help}\n")
+    else:                       #if no parameters passed, enter user input mode
+        Text = input("\nPlease enter text to be searched: \n\n")
+        Pattern = input("\nPlease enter pattern to search for: \n\n") 
+        KMP (Text, Pattern)     #call KMP on user input
