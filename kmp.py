@@ -1,14 +1,113 @@
-import sys
-from kmpUnitTests import *
+'''******************************** kmp.py *************************************
+	Final Project - Knuth-Morrus-Pratt String Matching Algorithm
+
+    Application: DNA Pattern Matching
+
+	Authors: Savoy Schuler
+
+	Date: December 2, 2016
+
+	Professor: Dr. Lisa Rebenitsch
+
+	Course: CSC 372 - M001 Analysis of Algorithms
+
+	System: Linux (Ubuntu tested)
+
+	Usage Instructions: 
+
+        Run:  python3 kmp.py <text> <pattern>
+        Test: python3 kmp.py {-t} or {test} >> testResults.txt
+        Help: python3 kmp.py {-h} or {help}
+
+	Example Input: python3 kmp.py ACTGACGTACGTACGTACGTACGTACTG ACGTACGT
+
+    Example Output:
+
+        Prefix table: 
+        0
+        0
+        0
+        0
+        1
+        2
+        3
+        4
+
+        Length Pattern: 8
+        Length Text: 28
+
+        Pattern starts at the 6 position. Shift = 4
+        Pattern starts at the 10 position. Shift = 8
+        Pattern starts at the 14 position. Shift = 12
+        Pattern starts at the 18 position. Shift = 16
+
+        Total number of matches found: 4
+ 
+	Bugs: None
+	
+	Todo: None
+
+	Program Details:
+
+
+
+
+
+
+
+
+
+
+
+    Pseudocode used provided by:
+
+        Introduction to Algorithms Third Edition (2009)
+
+    Pseudocode authors:
+    
+        Thomas H. Cormen
+        Charles E. Leiserson
+        Ronald L. Rivest
+        Clifford Stein
+
+    Modifications:
+
+        None - Original
+
+*****************************************************************************'''
+
+#program imports
+
+import sys                  #for access to command line arguments
+from kmpUnitTests import *  #for access to unit testing function
+
+
+#functions
 
 def KMP(T, P):  #T for text, P for pattern
+    """
+	Author: Savoy Schuler
+
+
+
+
+    Args:
+
+
+    Calls:
+		
+
+    Passes:
+
+
+    """
 
     #initialize local variables
 
     matches = 0                     #count number of matches found
     n = len(T)                      #length of text
     m = len(P)                      #length of pattern
-    PMT = PrefixFunc(P)             #partial matches table    
+    PMT = PartialMatchesTable(P)             #partial matches table    
     q = 0                           #number of characters matched
 
     #display prefix table for user
@@ -46,8 +145,23 @@ def KMP(T, P):  #T for text, P for pattern
 
 
 
-def PrefixFunc(P):  #P for pattrn
+def PartialMatchesTable(P):  #P for pattrn
+    """
+	Author: Savoy Schuler
 
+
+
+
+    Args:
+
+
+    Calls:
+		
+
+    Passes:
+
+
+    """
     #initialize local variables
 
     m = len(P)    #store length of patterm
@@ -79,8 +193,25 @@ def PrefixFunc(P):  #P for pattrn
 
 
 
-# this pattern allows us to mimic a main function
+#simulated main
+
 if __name__ == '__main__':
+    """
+	Author: Savoy Schuler
+
+
+
+
+    Args:
+
+
+    Calls:
+		
+
+    Passes:
+
+
+    """
     if len(sys.argv) == 3:      #if full command line parameters entered
         Text = sys.argv[1]      #set text
         Pattern = sys.argv[2]   #set pattern

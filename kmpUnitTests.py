@@ -1,7 +1,58 @@
-from kmp import *
+'''***************************** kmpUnitTests.py *******************************
+	File: kmpUnitTests.py
+
+    Author: Savoy Schuler
+
+    Date: December 2, 2016
+
+	Bugs: None
+	
+	Todo: None
+
+	File Details:
+
+        This file contains a single function filled with unit tests made for
+        evaulating the success of the implemented KMP string matching algorithm. 
+
+    File Contents:
+
+        tests()     - function to call and evaluate prewritten unit tests
+
+    Modifications:
+
+        None - Original
+
+*****************************************************************************'''
+
+#program imports
+
+from kmp import *   #for access to KMP and PartialMatchesTable functions
+
+#unit testing function
 
 def tests():
+    """
+	Author: Savoy Schuler
+
+    This function is designed to repeatingly call the KMP algorithm on multiple,
+    prewritten unit tests. The funciton will evaluate the success of the tests
+    and print test pass/fail and total success/failure information to the 
+    terminal.
+
+    Args: 
+
+        None
+
+    Calls: 
     
+        KMP(Text, Pattern) -    Function that evaluates number of pattern 
+                                matches inside text.                             
+
+    Passes:
+    
+        None    - only terminal output regarding success of tests
+
+    """    
     #initialize local variables
 
     i = 1               #test number, incremented after each test
@@ -111,7 +162,7 @@ def tests():
     expected.append (4)
 
 
-    #run tests with a reasonably longer DNA strand
+    #run tests with longer DNA strand
 
 
     print("Running test: " + str(i))
