@@ -55,10 +55,6 @@
 
 
 
-
-
-
-
     Pseudocode used provided by:
 
         Introduction to Algorithms Third Edition (2009)
@@ -122,9 +118,10 @@ def KMP(T, P):  #T for text, P for pattern
     print ("Length Text: " + str(n)+"\n")   
  
     #begin searching string for matches    
+    
     for i in range(n):                      #scan text from left to right
         while q > 0 and P[q] != T[i]:       #while next char does not match
-            q = PMT[q]                      #use table to "jump" # char matches
+            q = PMT[q-1]                      #use table to "jump" # char matches
         if P[q] == T[i]:                    #when next character does match
             q = q + 1                       #increment # of char matches by 1
         if q == m:                          #if all characters in pattern found

@@ -176,7 +176,7 @@ def tests():
     print("Text: " + longDnaStrand)
     print("Pattern: GAGG")
     results.append (KMP(longDnaStrand, "GAGG"))
-    expected.append (4)
+    expected.append (3)
 
 
     #Print out results of unit testing.
