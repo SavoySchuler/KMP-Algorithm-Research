@@ -12,7 +12,7 @@
 
     File Contents:
 
-        tests()     - function to call and evaluate prewritten unit tests
+        tests       - Function to call and evaluate prewritten unit tests.
  
 	Bugs: None
 	

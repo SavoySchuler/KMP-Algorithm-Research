@@ -88,11 +88,11 @@
         Ronald L. Rivest
         Clifford Stein
 
-    Functions contained within file:
+    File contents:
 
-        KMP
-        PartialMatchesTable
-        main
+        KMP                     - KMP string search algorithm.
+        PartialMatchesTable     - Function to compute KMP partial matches table.
+        main                    - Simualted program main.
 
 	Bugs: None
 	
@@ -284,7 +284,7 @@ if __name__ == '__main__':
     """
 	Author: Savoy Schuler
 
-    This function is a simulatied program main used for handling command line 
+    This function is a simulated program main used for handling command line 
     input and KMP string search call. 
 
     If all parameters are passed, KMP will be called on the provided parameters.
