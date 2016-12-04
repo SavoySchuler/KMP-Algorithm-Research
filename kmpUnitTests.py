@@ -5,10 +5,6 @@
 
     Date: December 2, 2016
 
-	Bugs: None
-	
-	Todo: None
-
 	File Details:
 
         This file contains a single function filled with unit tests made for
@@ -17,6 +13,10 @@
     File Contents:
 
         tests()     - function to call and evaluate prewritten unit tests
+ 
+	Bugs: None
+	
+	Todo: None
 
     Modifications:
 
@@ -194,4 +194,4 @@ def tests():
     print("\n\nTOTAL RESULTS\n")
     print("Successes: " + str(successes))
     print("Failures: " + str(failures))
-    print("\nEND UNIT TESTING")  
+    print("\nEND UNIT TESTING") 
