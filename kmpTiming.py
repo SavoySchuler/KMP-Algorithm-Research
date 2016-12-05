@@ -12,13 +12,22 @@
 	File Details:
 
         This file is designed for clocking and storing the runtime of the KMP
-        algorithm on variable length text inputs in milliseconds.
+        algorithm on variable length inputs in milliseconds.
+
+        The file tests vary the lengths of the text with constant pattern, the
+        pattern with constant text, and varying both with constant amounts.
     
         This file, for the most part, is a copy of the kmp.py file. All of the  
         prints have been removed to allow for more accurate timing of the KMP
         algorithm. The simluated main has been changed to iteratively call the
-        KMP on variable length text inputs and write the results to a file. The
-        KMP function has been modified to include timing. 
+        KMP on variable length inputs and write the results to a file. The KMP 
+        function has been modified to include and return timing statements. 
+
+    Output files: 
+
+        textTimingResults.txt
+        patternTimingResults.txt
+        bothTimingResults.txt
 
     Timing unit:    
 
@@ -30,9 +39,9 @@
 
     File Contents:
 
-        timingKMP               - Timingversion of KMP string search algorithm.
+        timingKMP               - Timing version of KMP string search algorithm.
         PartialMatchesTable     - Function to compute KMP partial matches table.
-        main                    - Simualted program main for timing program.
+        main                    - Simulated program main for timing program.
  
 	Bugs: None
 	
@@ -193,15 +202,17 @@ if __name__ == '__main__':
 	Author: Savoy Schuler
 
     This function is a simulated program main used for timing the KMP algorithm 
-    and storing the results in the timingResults.txt output file.
+    vary pattern and text lengths, both together and separately, and storing the 
+    results in the .txt output files: 
 
-    If all parameters are passed, the timing version of the KMP will be called 
-    on the provided parameters.
+        textTimingResults.txt
+        patternTimingResults.txt
+        bothTimingResults.txt
+
+    If any command line parameters are passed, usage will be printed.
     
-    If no parameters the timing version of the KMP will run on variable length 
-    input from 0 to 1000.
-
-    One argument is passed as a command line parameter, usage will be printed.
+    If no parameters are passed, the timing version of the KMP will run on 
+    variable length pattern and text inputs from 1 to 1000.
 
     Args:
 
@@ -217,39 +228,82 @@ if __name__ == '__main__':
         Pattern - Pattern being searched for in text.
     """
     
-    #set up array to store run times      
+    #set up arrays to store run times      
   
-    runTimes = []
+    textRunTimes = []
+    patternRunTimes = []
+    bothRunTimes = []
 
-    #open file to store results of variable length input timing    
+    #open files to store results of timing variable length input    
 
-    timingResults = open('timingResults.txt', 'w')
+    textTimingResults = open('textTimingResults.txt', 'w')
+    patternTimingResults = open('patternTimingResults.txt', 'w')
+    bothTimingResults = open('bothTimingResults.txt', 'w')
 
-    #allow user to call help -> program print usage    
+    #allow user to call for help if any command line parameters are passed 
 
-    if len(sys.argv) > 1:    #default all one parameter calls to display use
+    if len(sys.argv) > 1:  
             print("\nUsages:") 
             print("Run:  python3 kmpTiming.py")
             print("Help: python3 kmpTiming.py {-h} or {help}\n")
     
-    #run KMP timing program on variable length input
+    #run KMP timing program on variable length inputs
     #write results to file
+
+    #vary text length from 1 to 1000
 
     else:                       
         Text = ""                   #intial text state
-        Pattern = "AAGAA"           #default search pattern for timing
+        Pattern = "AAGAA"           #declare search pattern for timing
 
-        for i in range(1000):       #test on test lengths 0 to 1000
+        for i in range(1000):       #test on test lengths 1 to 1000
             
             if (i+1)%3 == 0:        #every third character, append a 'g'
                 Text = Text + "G"        
             else:            
                 Text = Text + "A"   #non x%3==0 iterations, append 'a' to text
-            runTimes.append(timingKMP (Text, Pattern))  #call timing KMP
+            textRunTimes.append(timingKMP (Text, Pattern))  #call timing KMP
 
-        for i in runTimes:          #write all run times to file
-            timingResults.write(str(i*1000) + "\n")
+        for i in textRunTimes:          #write all run times to file
+            textTimingResults.write(str(i*1000) + "\n")
        
-    #close results file
+    #vary pattern length from 1 to 1000
+                           
+        Text = "AAGAA" * 200        #create text long enough to search 
+        Pattern = ""                #initial search pattern for timing
 
-    timingResults.close()
+        for i in range(1000):       #test on pattern lengths 1 to 1000
+            
+            if (i+1)%3 == 0:        #every third character, append a 'g'
+                Pattern = Pattern + "G"        
+            else:            
+                Pattern = Pattern + "A"   #non x%3==0 iterations, append 'a'
+            patternRunTimes.append(timingKMP (Text, Pattern))  #call timing KMP
+
+        for i in patternRunTimes:          #write all run times to file
+            patternTimingResults.write(str(i*1000) + "\n")
+
+    #vary both from 1 to 1000
+
+        Text = ""                   #create text long enough to search 
+        Pattern = ""                #default search pattern for timing
+
+        for i in range(1000):       #test on pattern lengths 1 to 1000
+            
+            if (i+1)%3 == 0:        #every third character, append a 'g'
+                Text = Text + "G"  
+                Pattern = Pattern + "G"        
+            else:            
+                Text = Text + "A"           #non x%3==0 iterations, append 'a
+                Pattern = Pattern + "A"   
+            bothRunTimes.append(timingKMP (Text, Pattern))  #call timing KMP
+
+        for i in bothRunTimes:          #write all run times to file
+            bothTimingResults.write(str(i*1000) + "\n")
+
+
+    #close results files
+
+    textTimingResults.close()
+    patternTimingResults.close()
+    bothTimingResults.close() 

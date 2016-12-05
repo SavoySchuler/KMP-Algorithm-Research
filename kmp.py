@@ -92,7 +92,7 @@
 
         KMP                     - KMP string search algorithm.
         PartialMatchesTable     - Function to compute KMP partial matches table.
-        main                    - Simualted program main.
+        main                    - Simulated program main.
 
 	Bugs: None
 	
@@ -304,7 +304,10 @@ if __name__ == '__main__':
 
     Args:
 
-        None.
+        Optional command line parameters:
+        
+            T   - Text that is to be searched for pattern
+            P   - Pattern being searched for in text.
 
     Calls:
 		
