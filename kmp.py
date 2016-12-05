@@ -200,7 +200,7 @@ def KMP(T, P):  #T for text, P for pattern
 
 
 
-def PartialMatchesTable(P):  #P for pattrn
+def PartialMatchesTable(P):  #P for pattern
     """
 	Author: Savoy Schuler
 
@@ -251,7 +251,7 @@ def PartialMatchesTable(P):  #P for pattrn
 
     #initialize local variables
 
-    m = len(P)  #store length of patterm
+    m = len(P)  #store length of pattern
     PMT = []    #table of pattern's internal partial match to prefix lengths
     k = 0       #internal partial match to prefix length (chars matched so far)
 
